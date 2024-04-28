@@ -1,12 +1,11 @@
-name: Trigger Jitpack Build
-on:
-  push:
-    branches: [ master ]
-
-  workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Trigger Jitpack Build
-        run: curl "https://jitpack.io/com/github/Minestom/Minestom/${GITHUB_SHA:0:10}/build.log"
+    - continue-on-error: true
+      name: Trigger Jitpack Build
+      run: curl "https://jitpack.io/com/github/Minestom/Minestom/${GITHUB_SHA:0:10}/build.log"
+name: Trigger Jitpack Build
+on:
+  repository_dispatch:
+    types: trigger-ga___trigger-jitpack-build.yml
